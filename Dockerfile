@@ -93,7 +93,8 @@ RUN cat /add-to-functions.php >> /var/www/html/wp-content/themes/p2/functions.ph
 
 #RUN apt-get clean; rm -rf /var/lib/apt/lists/*
 
-ADD ./backups. /
+ADD ./batches.py /
+ADD ./backup.sh /
 ADD ./start.sh /
 
 EXPOSE 80 443

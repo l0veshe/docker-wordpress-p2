@@ -3,11 +3,12 @@ Wordpress P2 discussion
 
 Build the container: `docker build --rm -t p2 .`
 
-Run with: `docker run -d --name p2 -p 80:80 p2`
 
-Run in interactive: `docker run -t -i --name p2 -p 80:80 --rm  p2 /bin/bash`
+The MySQL backups are stored in S3 and therefore requires S3 credentials.
 
-Run with s3cmd configured:  `docker run -t -i --name p2 -p 80:80 --rm -e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2 /bin/bash`
+Run with: `docker run -d --name p2 -p 80:80 -e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2`
+
+Run in interactive mode:  `docker run -t -i --name p2 -p 80:80 --rm -e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2 /bin/bash`
 
 
 Using
