@@ -46,6 +46,8 @@ ADD ./s3cfg /.s3cfg
 RUN echo '*/1 * * * *  /bin/bash -c "/backup.sh"' > /mycron
 RUN crontab /mycron
 
+ADD ./etc-pam.d-cron /etc/pam.d/cron
+
 
 #
 # Install rsyslog
