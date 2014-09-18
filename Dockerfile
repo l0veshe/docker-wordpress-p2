@@ -17,8 +17,9 @@ RUN apt-get install -y nano git wget unzip
 #
 # Installation with easy_install is more reliable. apt-get don't always work.
 
-RUN apt-get install -y python python-setuptools python-magic python-pip
+RUN apt-get install -y python python-setuptools python-magic 
 RUN easy_install supervisor 
+RUN easy_install pip
 
 ADD ./etc-supervisord.conf /etc/supervisord.conf
 ADD ./etc-supervisor-conf.d-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
