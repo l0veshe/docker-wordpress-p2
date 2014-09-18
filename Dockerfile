@@ -104,8 +104,8 @@ ADD ./src-phpmyadmin/config.inc.php /var/www/html/phpMyAdmin-4.0.8-all-languages
 ADD ./wordpress-4.0.tar.gz /
 RUN cp -r /wordpress/* /var/www/html/
 ADD ./src-wp/wp-config.php /var/www/html/
-ADD ./p2.tgz /var/www/html/wp-content/themes
-ADD ./peters-login-redirect.tgz /var/www/html/wp-content/plugins
+ADD ./src-wp/p2.tgz /var/www/html/wp-content/themes
+ADD ./src-wp/peters-login-redirect.tgz /var/www/html/wp-content/plugins
 
 # Make site private
 ADD ./src-wp/add-to-functions.php /
