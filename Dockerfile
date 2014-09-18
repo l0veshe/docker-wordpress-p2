@@ -86,7 +86,6 @@ ADD ./etc-apache2-apache2.conf /etc/apache2/apache2.conf
 ADD ./etc-apache2-mods-available-status.conf /etc/apache2/mods-available/status.conf
 
 RUN chown www-data:www-data -R /var/www/
-RUN chmod +w /var/www/html/wp-content/uploads
 
 RUN rm /var/www/html/index.html
 RUN echo "<?php\nphpinfo();\n " > /var/www/html/info.php
@@ -118,6 +117,9 @@ RUN cat /add-to-functions.php >> /var/www/html/wp-content/themes/p2/functions.ph
 
 # Remove toolbar
 ADD ./src-wp/toolbar-removal-completely-disable.tgz /var/www/html/wp-content/plugins
+
+RUN mkdir -p /var/www/html/wp-content/uploads
+RUN chmod +w /var/www/html/wp-content/uploads
 
 #
 # Cleanup and start things up
