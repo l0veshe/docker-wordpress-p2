@@ -105,12 +105,16 @@ ADD ./wordpress-4.0.tar.gz /
 RUN cp -r /wordpress/* /var/www/html/
 ADD ./src-wp/wp-config.php /var/www/html/
 ADD ./src-wp/p2.tgz /var/www/html/wp-content/themes
+
+# Make login mandatory
 ADD ./src-wp/peters-login-redirect.tgz /var/www/html/wp-content/plugins
 
 # Make site private
 ADD ./src-wp/add-to-functions.php /
 RUN cat /add-to-functions.php >> /var/www/html/wp-content/themes/p2/functions.php
 
+# Remove toolbar
+ADD ./src-wp/toolbar-removal-completely-disable.tgz /var/www/html/wp-content/plugins
 
 #
 # Cleanup and start things up

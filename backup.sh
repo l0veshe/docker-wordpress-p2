@@ -1,4 +1,5 @@
 #!/bin/bash
+source /env
 FILE=backup-wp1p2-`hostname`-`date +%Y%m%d`.sql
 mysqldump wp1 > /$FILE
 gzip -f /$FILE
