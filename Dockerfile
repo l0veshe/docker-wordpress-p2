@@ -8,14 +8,8 @@ MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
 
 RUN apt-get update
-RUN apt-get install -y nano git wget s3cmd
+RUN apt-get install -y nano git wget unzip
 
-
-#
-# Setup S3
-# ---------
-
-ADD ./s3cfg /.s3cfg
 
 
 # Install supervisord (used to handle processes)
@@ -23,12 +17,43 @@ ADD ./s3cfg /.s3cfg
 #
 # Installation with easy_install is more reliable. apt-get don't always work.
 
-RUN apt-get install -y python python-setuptools
-RUN easy_install supervisor
+RUN apt-get install -y python python-setuptools python-magic python-pip
+RUN easy_install supervisor 
 
 ADD ./etc-supervisord.conf /etc/supervisord.conf
 ADD ./etc-supervisor-conf.d-supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor/
+
+
+#
+# Setup S3
+# ---------
+
+RUN wget https://github.com/s3tools/s3cmd/archive/master.zip
+RUN unzip /master.zip
+RUN cd /s3cmd-master; python setup.py install
+RUN apt-get install -y python-dateutil
+
+ADD ./s3cfg /.s3cfg
+
+
+#
+# Install cron
+# ------------
+
+# Run jon every minute
+RUN echo '*/1 * * * *  /bin/bash -c "/backup.sh"' > /mycron
+RUN crontab /mycron
+
+
+#
+# Install rsyslog
+# ---------------
+
+RUN apt-get install -y rsyslog
+
+ADD ./etc-rsyslog.conf /etc/rsyslog.conf
+ADD ./etc-rsyslog.d-50-default.conf /etc/rsyslog.d/50-default.conf
 
 
 #
