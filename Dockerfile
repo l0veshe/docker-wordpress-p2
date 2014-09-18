@@ -87,8 +87,8 @@ ADD ./etc-apache2-mods-available-status.conf /etc/apache2/mods-available/status.
 
 RUN chown www-data:www-data -R /var/www/
 
-#RUN rm /var/www/html/index.html
-#RUN echo "<?php\nphpinfo();\n " > /var/www/html/info.php
+RUN rm /var/www/html/index.html
+RUN echo "<?php\nphpinfo();\n " > /var/www/html/info.php
 
 
 #
