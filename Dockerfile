@@ -8,7 +8,7 @@ MAINTAINER Jonas Colmsjö "jonas@gizur.com"
 
 
 RUN apt-get update
-RUN apt-get install -y nano git wget unzip
+RUN apt-get install -y nano git wget unzip cron
 
 
 
