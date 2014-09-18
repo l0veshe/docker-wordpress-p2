@@ -1,4 +1,6 @@
 #!/bin/bash
+export > /env
+
 supervisord &
 
 sleep 5
