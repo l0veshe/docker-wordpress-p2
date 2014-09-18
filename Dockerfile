@@ -78,7 +78,8 @@ RUN /src-mysql/mysql-setup.sh
 # ----------------------
 
 RUN apt-get update
-RUN apt-get install -y apache2 php5 php5-curl php5-mysql php5-mcrypt
+#RUN apt-get install -y apache2 php5 php5-curl php5-mysql php5-mcrypt
+RUN apt-get install -y apache2 php5 php5-curl php5-mysql
 RUN a2enmod rewrite status
 
 ADD ./etc-apache2-apache2.conf /etc/apache2/apache2.conf
