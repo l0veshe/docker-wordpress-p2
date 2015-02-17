@@ -5,11 +5,16 @@ Build the container: `docker build --rm -t p2 .`
 
 The MySQL backups are stored in S3 and therefore requires S3 credentials.
 
-Run with: `docker run -d --name p2 -p 80:80 -e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2`
+Run in interactive mode:  
+`docker run -t -i --name p2 --restart="on-failure:10"  \
+-e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2 /bin/bash`
 
-Run in interactive mode:  `docker run -t -i --name p2 -p 80:80 --rm -e S3_ACCESS_KEY=... -e S3_SECRET_KEY=... p2 /bin/bash`
+run `start.sh` to start the processes (managed by supervisor).
 
-The database dump is configured with a URL that needs to be changed. 
+detach from the container with `ctrl-p` `ctrl-q` and it will continue to run
+(exit will stop the container).
+
+The database dump is configured with a URL that needs to be changed.
 Open phpMyAdmin and update it in wp1.wp_options - http://[IP]:[PORT]/phpMyAdmin-4.0.8-all-languages
 
 
@@ -37,7 +42,11 @@ Worpress:
 Troubleshooting
 ---------------
 
+ * Problem with infinite redirect (302) loop. Move the p2 theme folder out of
+   `wp-content/themes`. Login a admin and check the settings page (or update using
+   phpMyAdmin).
+
+ * Try the [WP cli tool](http://wp-cli.org/) in case of problems you can't solve
 
  * Change any option: http://[IP]/wp-admin/options.php
   *  http://codex.wordpress.org/Option_Reference
-
