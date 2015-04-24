@@ -1,4 +1,15 @@
 <?php
+
+/*
+   Jonas C. - this is needed when running wordpress behind a reverse proxy,
+   see http://serverascode.com/2014/05/31/wordpress-ssl-reverse-proxy.html
+*/
+
+define('FORCE_SSL_ADMIN', true);
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+			$_SERVER['HTTPS']='on';
+
+
 /**
  * The base configurations of the WordPress.
  *

@@ -42,6 +42,10 @@ Worpress:
 Troubleshooting
 ---------------
 
+ * A trick was needed to make wordpress work behind a reverse proxy doing SSL
+   terminal. I found the solution
+   [here](http://serverascode.com/2014/05/31/wordpress-ssl-reverse-proxy.html)
+
  * Problem with infinite redirect (302) loop. Move the p2 theme folder out of
    `wp-content/themes`. Login a admin and check the settings page (or update using
    phpMyAdmin).
